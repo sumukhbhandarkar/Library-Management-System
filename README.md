@@ -13,7 +13,7 @@ Location of the book can be updated.
 * Book History : /api/books/{id}/book-history
 * Update Book Location : /api/books/{id}/location
 
-# Technolofy Stack Used
+# Technology Stack Used
 * Spring Initiliazaer Project
 * Elastic Search Database
 * AngularJS 

@@ -21,6 +21,14 @@ Location of the book can be updated.
 # Elastic Host
 * Elastic can be either hosted on Docker or Kubernetes. I have used windows installer to create an instance of Elastic
 
+# Elastic Indices
+* borrower : id, name, dateOfIssue, returnDate, bookID
+* books : id, title, genre, author, state, issuerID
+
+Book can have three states : Issued, Available, maintainance (Book will be in maintainance if genre is not specified. IssuerID for the book is not mandatory, since book can be in either available / maintainance state)
+
+
+
 # UI Snapshots
 Please find snapshots of the UI below
 

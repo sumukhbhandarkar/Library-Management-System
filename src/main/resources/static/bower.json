@@ -1,0 +1,39 @@
+{
+  "name": "LibraryManagementWeb",
+  "version": "1.0.0",
+  "dependencies": {
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "bootstrap": "~3.3.5",
+    "angular-sanitize": "~1.4.7",
+    "angular-bootstrap": "~1.2.0",
+    "angular-ui-router": "~0.2.14",
+    "angular-ui-grid": "4.0.4",
+    "bootstrap-ui-datetime-picker": "~2.5.4",
+    "kendo-ui": "~2015.2.624",
+    "angular-clipboard": "^1.5.0",
+    "highcharts-ng": "~1.0.0",
+    "highcharts": "~5.0.0",
+    "angular-bootstrap-contextmenu": "^0.9.9",
+    "angular-ui-select": "^0.19.8",
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-messages": "1.5.8",
+    "angular-resource": "1.5.8",
+    "ag-grid-community": "~20.0.0",
+    "js-xlsx": "0.14.0",
+    "json-export-excel": "ng-json-export-excel#^1.0.2",
+    "file-saver": "*"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.5.8"
+  },
+  "resolutions": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.5.8",
+    "angular-bootstrap": "~1.2.0",
+    "angular-animate": "1.5.8",
+    "angular-messages": "1.5.8",
+    "angular-resource": "1.5.8"
+  }
+}

@@ -1,52 +1,78 @@
 package com.sumukh.librarymanagementsystem.controller;
 
-import com.sumukh.librarymanagementsystem.api.IBookRemoteController;
 import com.sumukh.librarymanagementsystem.entity.BookEntity;
 import com.sumukh.librarymanagementsystem.entity.IssuerEntity;
-import lombok.RequiredArgsConstructor;
+import com.sumukh.librarymanagementsystem.repo.BookRepo;
+import com.sumukh.librarymanagementsystem.repo.IssuerRepo;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-@RequiredArgsConstructor
+
 @RestController
+@AllArgsConstructor
 @Slf4j
-public class BookController implements IBookRemoteController {
+@RequestMapping("/api")
+public class BookController {
 
-    @Override
-    public void issueBooks(BookEntity bookEntity, HttpSession session) {
+    @Autowired
+    private BookRepo bookRepo;
 
+    @Autowired
+    private IssuerRepo issuerRepo;
+
+    private static final String[] EMPTY_ARRAY = new String[0];
+
+    @PostMapping("/issueBooks")
+    public void issueBooks(BookEntity bookEntity, IssuerEntity issuerEntity) {
+        String bookID = bookEntity.getBookID();
+        String issuerName = issuerEntity.getIssuerName();
+        issuerEntity.setBookID(bookEntity.getBookID());
+        issuerRepo.save(issuerEntity);
+        bookEntity.setBookState("Issued");
+        bookRepo.save(bookEntity);
+        log.info("Book with id " + bookID + " is issued to " + issuerName);
     }
 
-    @Override
-    public List<BookEntity> getAllBooks() {
-        return null;
+    @GetMapping("/get")
+    public Iterable<BookEntity> getAllBooks() {
+        return bookRepo.findAll();
     }
 
-    @Override
-    public List<BookEntity> searchBooks(String title, String author, String publisher, String isbn) {
-        return null;
+    @GetMapping("/search/{keyword}")
+    public Optional<BookEntity> searchBooks(String title, String author, String publisher, String isbn) {
+        return bookRepo.findById(isbn);
     }
 
-    @Override
+    @PostMapping("/updateBook")
     public void updateBookLocation(String bookID, String newLocation) {
-
+        BookEntity book = (BookEntity) bookRepo.findAllById(Collections.singleton(bookID));
+        book.setBookGenre(newLocation);
+        bookRepo.save(book);
+        log.info("Book location / genre updated");
     }
 
-    @Override
-    public void returnBooks(BookEntity bookEntity, HttpSession session) {
-
+    @PostMapping("/returnBooks")
+    public void returnBooks(IssuerEntity issuerEntity) {
+        String bookID = issuerEntity.getBookID();
+        issuerEntity.setBookID("NA");
+        issuerRepo.save(issuerEntity);
+        Optional<BookEntity> entity = bookRepo.findById(bookID);
+        log.info("Book with id " + bookID + " is returned");
     }
 
-    @Override
-    public List<IssuerEntity> getBookHistory(String bookID) {
-        return null;
+    @GetMapping("/history/{id}")
+    public Iterable<BookEntity> getBookHistory(String bookID) {
+        return bookRepo.findAllById(Collections.singleton(bookID));
     }
 
-    @Override
-    public void addBooks(BookEntity bookEntity, HttpSession session) {
-
+    @PostMapping("/addbook")
+    public void addBooks(@RequestBody List<BookEntity> books) {
+        bookRepo.saveAll(books);
     }
 }

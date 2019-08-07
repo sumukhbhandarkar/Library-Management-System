@@ -2,31 +2,30 @@ package com.sumukh.librarymanagementsystem.api;
 
 import com.sumukh.librarymanagementsystem.entity.BookEntity;
 import com.sumukh.librarymanagementsystem.entity.IssuerEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 public interface IBookRemoteController {
-    String BOOK_ISSUE = "/api/books/{id}/issue";
-    String BOOK_GET_ALL = "/api/books/";
-    String BOOK_SEARCH = "/api/books/search";
-    String BOOKS_LOCATION_UPDATE = "/api/books/{id}/location";
-    String BOOK_RETURNED = "/api/books/{id}/return";
-    String BOOK_HISTORY = "/api/books/{id}/issue-history";
-    String ADD_BOOKS = "/api/addbook";
+    String BOOK_ISSUE = "/books/{id}/issue";
+    String BOOK_GET_ALL = "/books/";
+    String BOOK_SEARCH = "/books/search";
+    String BOOKS_LOCATION_UPDATE = "/books/{id}/location";
+    String BOOK_RETURNED = "/books/{id}/return";
+    String BOOK_HISTORY = "/books/{id}/issue-history";
+    String ADD_BOOKS = "/addbook";
 
     @PostMapping(value = BOOK_ISSUE)
     void issueBooks(@RequestBody BookEntity bookEntity, HttpSession session);
 
-    @GetMapping(value = BOOK_GET_ALL)
-    List<BookEntity> getAllBooks();
+    @ResponseStatus(HttpStatus.OK)
+    Iterable<BookEntity> getAllBooks();
 
     @GetMapping(value = BOOK_SEARCH)
-    List<BookEntity> searchBooks(@RequestParam(value = "title", required = false) String title,
+    Optional<BookEntity> searchBooks(@RequestParam(value = "title", required = false) String title,
                                  @RequestParam(value = "author", required = false) String author,
                                  @RequestParam(value = "publisher", required = false) String publisher,
                                  @RequestParam(value = "isbn", required = false) String isbn);

@@ -29,7 +29,7 @@ Book can have three states : Issued, Available, maintainance (Book will be in ma
 
 
 # Elastic Data Snapshots
-
+(https://github.com/sumukhbhandarkar/Library-Management-System/blob/master/src/main/resources/static/images/elasticData.PNG)
 
 # UI Snapshots
 Please find snapshots of the UI below

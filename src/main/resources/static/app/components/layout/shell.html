@@ -1,0 +1,15 @@
+<div ng-controller="Shell as vm" class="ag-screen-adjustment">
+    <header class="clearfix" ng-if="!vm.showSplash">
+        <div ng-include="'/components/layout/topNav.html'"></div>
+    </header>
+    <section id="content" class="content" style="height: 95%">
+        <div class="container-fluid ag-screen-adjustment" ui-view class="shuffle-animation"></div>
+        <div ng-if="vm.fatalError">
+            <div ng-include="'/components/layout/fatalError.html'"></div>
+        </div>
+    </section>
+    <br/>
+    <footer ng-if="!vm.fatalError && !vm.showSplash" class="clearfix">
+        <div ng-include="'/components/layout/footer.html'"></div>
+    </footer>
+</div>

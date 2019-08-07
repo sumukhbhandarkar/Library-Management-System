@@ -28,6 +28,8 @@ Location of the book can be updated.
 Book can have three states : Issued, Available, maintainance (Book will be in maintainance if genre is not specified. IssuerID for the book is not mandatory, since book can be in either available / maintainance state)
 
 
+# Elastic Data Snapshots
+
 
 # UI Snapshots
 Please find snapshots of the UI below

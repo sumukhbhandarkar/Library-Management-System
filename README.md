@@ -31,5 +31,60 @@ Book can have three states : Issued, Available, maintainance (Book will be in ma
 # Elastic Data Snapshots
 (https://github.com/sumukhbhandarkar/Library-Management-System/blob/master/src/main/resources/static/images/elasticData.PNG)
 
+# Steps to install
+* Download the code onto IDE that supports Sprint Boot, such as IntelliJ Ultimate Edition / Spring Tool Suite.
+* Download Elastic Search and start instance on port 9200, with transport port as 9300. 
+* Create index named 'test' with mapping as here 
+"""
+{
+	"settings" : {
+		
+			"number_of_shards" : 3
+			
+	},
+    "mappings": {
+            "properties": {
+                "bookTitle": {
+                    "type": "keyword"
+                },
+                "bookID": {
+                    "type": "keyword"
+                },
+                "bookGenre": {
+                    "type": "keyword"
+                },
+                "bookAuthor": {
+                    "type": "keyword"
+                },
+                "bookState": {
+                    "type": "keyword"
+                },
+                "issuerID": {
+                    "type": "keyword"
+                }
+            }
+        }
+}
+
+"""
+To add books : Check the elastic data snapshot.
+
+Run the application using Spring Boot. 
+Test the API endpoints using Postman.
+
+If API endpoints are working, open resources/static folder in IDE such as Webstorm. 
+perform bower and npm install to download packages. 
+
+* Install bower
+$ npm install bower --save-dev -g
+
+* Install grunt-serve
+$ npm install grunt-serve --save-dev -g
+$ npm install grunt-cli --save-dev -g
+$ npm install grunt --save-dev -g
+
+* Perform grunt serve from command line to get the Angular Application up and running.
+
+
 
 

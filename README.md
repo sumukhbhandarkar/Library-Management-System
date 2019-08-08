@@ -35,7 +35,7 @@ Book can have three states : Issued, Available, maintainance (Book will be in ma
 * Download the code onto IDE that supports Sprint Boot, such as IntelliJ Ultimate Edition / Spring Tool Suite.
 * Download Elastic Search and start instance on port 9200, with transport port as 9300. 
 * Create index named 'test' with mapping as here 
-"""
+```
 {
 	"settings" : {
 		
@@ -66,7 +66,7 @@ Book can have three states : Issued, Available, maintainance (Book will be in ma
         }
 }
 
-"""
+```
 To add books : Check the elastic data snapshot.
 
 Run the application using Spring Boot. 
